@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Impact Tech</title>
+    <title>G-HR</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -40,14 +40,32 @@
     <!-- summernote -->
     <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
 
-    {{-- Dropzone --}}
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet" />
+     {{-- Dropzone --}}
+     <link rel="stylesheet" href="{{ asset('dropzone/dropzone.min.css') }}">
+
     {{-- Jquery --}}
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+
 
     <!-- Include Toastr CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"> --}}
+    <script src="{{ asset('css/toastr.css') }}"></script>
+
     <style>
+        @keyframes slideInRight {
+            0% {
+                transform: translateX(100%);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        .toast {
+            animation: slideInRight 0.2s ease-in-out;
+        }
+
         .toast {
             min-width: 350px;
             min-height: 30px !important;
@@ -68,23 +86,39 @@
             /* background-color: #000000; */
             border-radius: 50%;
             display: inline-block;
-            margin-bottom: 2px;
+            margin-left: 2px;
+            margin-top: 10px;
         }
-        .form-control-sidebar{
+
+        .form-control-sidebar {
             background-color: #f2f2f2;
             border: 1px solid #d9d9d9;
             color: #1f2d3d;
         }
-        .btn-sidebar{
+
+        .btn-sidebar {
             background-color: #f2f2f2;
             border: 1px solid #d9d9d9;
             color: #1f2d3d;
         }
-        .user-panel{
+
+        .user-panel {
             border-bottom: 1px solid #dee2e6;
         }
-        .brand-link{
+
+        .brand-link {
             padding: 9px .5rem !important;
+        }
+
+        .title_error {
+            color: red;
+            font-size: 13px;
+            font-style: italic;
+        }
+
+        .required:after {
+            content: " *";
+            color: red;
         }
     </style>
     @yield('style')
@@ -95,7 +129,7 @@
 
         <!-- Top Navbar -->
         <x-navbar />
-        
+
         <!-- Main Sidebar-->
         <x-mainSidebar />
 
@@ -113,7 +147,7 @@
 
 
         <!-- Footer -->
-        <x-footer/>
+        <x-footer />
 
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
@@ -123,9 +157,7 @@
 
 
     <!-- Include Toastr JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <!-- jQuery -->
-    {{-- <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script> --}}
+    <script src="{{ asset('js/toastr.js') }}"></script>
     <!-- jQuery UI 1.11.4 -->
     <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -161,7 +193,8 @@
     <script src="{{ asset('plugins/jquery-knob/jquery.knob.min.js') }}"></script>
 
     {{-- DropZone --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script> --}}
+    <script src="{{ asset('dropzone/dropzone.min.js') }}"></script>
 
     <!-- daterangepicker -->
     <script src="{{ asset('plugins/moment/moment.min.js') }}"></script>
@@ -246,7 +279,7 @@
             "ordering": true,
             "info": true,
             "autoWidth": false,
-            "responsive": true
+            "responsive": false
         });
         $("#data-table-2").DataTable({
             "responsive": true,
